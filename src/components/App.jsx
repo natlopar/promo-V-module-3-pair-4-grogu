@@ -1,6 +1,24 @@
+import { useState } from 'react';
 import '../styles/App.scss';
 
 function App() {
+const [posicion, setPosicion] = useState(0);
+
+const rollDice=()=>{
+  const dado =Math.floor(Math.random()*4)+1;
+  console.log(dado);
+  if(dado===4){
+setPosicion((prevPosition)=>prevPosition+1)
+
+  }else{
+
+  }
+  //const game status,galleta,ranas,huevos,value del dado,nombre de la usuaria del juego.
+}
+const handleRandon=()=>{
+  rollDice();
+}
+
   return (
     <>
     <header>
@@ -18,7 +36,7 @@ function App() {
       </section>
 
       <section>
-        <button className="dice">Lanzar Dado</button>
+        <button className="dice" onClick ={handleRandon}>Lanzar Dado</button>
         <div className="game-status">En curso</div>
       </section>
 
