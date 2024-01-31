@@ -7,7 +7,7 @@ import GameStatus from './GameStatus';
 
 function App() {
 const [posicion, setPosicion] = useState(0);
-const [gameStatus, setGameStatus] = useState('Jugando');
+const [gameStatus, setGameStatus] = useState('');
 const [cookies, setCookies] = useState (3);
 const [frogs, setFrogs] = useState (3);
 const [eggs, setEggs] = useState (3);
@@ -18,11 +18,12 @@ const rollDice=()=>{
   console.log(dado);
   if(dado === 4){
   setPosicion((prevPosition)=>prevPosition+1);
-  }
-  // } else {
   
+  }
+  else if(cookies){
+   cookies= cookies-1;
 
-  // }
+  }
 
   // const game status,galleta,ranas,huevos,value del dado,nombre de la usuaria del juego.
 }
