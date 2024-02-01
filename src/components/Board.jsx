@@ -1,18 +1,24 @@
 import Grogu from "./Grogu";
 
-const Board = () => {
-    return (
-        <section className="board">
-        <div className="cell"><Grogu/></div>
-        <div className="cell"></div>
-        <div className="cell"></div>
-        <div className="cell"></div>
-        <div className="cell"></div>
-        <div className="cell"></div>
-        <div className="cell"></div>
-      </section>
+const Board = ({div}) => {
 
+
+const renderDiv =()=>{
+  div.fill((div1)=>null);
+  div.map((div1, index)=>{
+    return <div key={index} className="cell"></div>;
+  });
+  }
+
+    return (
+      <>
+      <section className="board">
+        {renderDiv()}
+      </section>
+      {/* <div><Grogu/></div> */}
+      </>
     )
 }
+
 
 export default Board;
