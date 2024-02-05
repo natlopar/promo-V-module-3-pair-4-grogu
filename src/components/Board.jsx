@@ -1,12 +1,13 @@
+import Cell from "./Cell";
 import Grogu from "./Grogu";
 
-const Board = ({div}) => {
+const Board = ({posicion}) => {
+  const div = Array(7).fill(null);
 
 
 const renderDiv =()=>{
-  div.fill((div1)=>null);
-  div.map((div1, index)=>{
-    return <div key={index} className="cell"></div>;
+ return  div.map(( div1,index)=>{
+    return < Cell  key={index} posicion={posicion}/>;
   });
   }
 
@@ -15,7 +16,6 @@ const renderDiv =()=>{
       <section className="board">
         {renderDiv()}
       </section>
-      {/* <div><Grogu/></div> */}
       </>
     )
 }

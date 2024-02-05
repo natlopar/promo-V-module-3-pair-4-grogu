@@ -13,7 +13,7 @@ const [cookies, setCookies] = useState (3);
 const [frogs, setFrogs] = useState (3);
 const [eggs, setEggs] = useState (3);
 const [dice, setDice] = useState ('');
-const [div, setDiv] = useState(['', '','','','','','']);
+
 
 const rollDice=()=>{
   const dado = Math.floor(Math.random()*4)+1;
@@ -32,6 +32,8 @@ const rollDice=()=>{
   status();
 }
   // const game status,galleta,ranas,huevos,value del dado,nombre de la usuaria del juego.
+
+
 
 const status =()=>{
   if(cookies === 0 && frogs === 0 && eggs === 0){
@@ -59,7 +61,7 @@ const restartGame =()=>{
     <>
     <Header/>
     <main className="page">
-      <Board div={div}/>
+      <Board posicion ={posicion}/>
 
       <section>
         <button className="dice" onClick ={handleClick}>Lanzar Dado<Dice/></button>
