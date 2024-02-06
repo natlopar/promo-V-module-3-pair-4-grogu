@@ -7,7 +7,7 @@ const Board = ({posicion}) => {
 
 const renderDiv =()=>{
  return  div.map(( div1,index)=>{
-    return < Cell  key={index} posicion={posicion}/>;
+    return < Cell  key={index} index={index} posicion={posicion}/>;
   });
   }
 

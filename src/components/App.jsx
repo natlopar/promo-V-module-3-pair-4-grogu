@@ -5,11 +5,12 @@ import Board from './Board';
 import Dice from './Dice';
 import GameStatus from './GameStatus';
 import RestartButton from './RestartButton';
+import Goods from './Goods';
 
 function App() {
 const [posicion, setPosicion] = useState(0);
 const [gameStatus, setGameStatus] = useState('');
-const [cookies, setCookies] = useState (3);
+const [cookies, setCookies] = useState (['🍪', '🍪', '🍪']);
 const [frogs, setFrogs] = useState (3);
 const [eggs, setEggs] = useState (3);
 const [dice, setDice] = useState ('');
@@ -23,12 +24,14 @@ const rollDice=()=>{
   setPosicion((prevPosition)=>prevPosition+1);
   }
   else if(cookies){
-   setCookies(cookies-1);
-  }else if (cookies === 0 && frogs) {
-    setFrogs(frogs-1);
-  } else if (eggs) {
-   setEggs(eggs-1);
-  } 
+   setCookies(cookies.slice(1));
+  }
+
+  // }else if (!cookies && frogs) {
+  //   setFrogs(frogs.slice(1));
+  // } else if (eggs) {
+  //  setEggs(eggs.slice(1));
+  // } 
   status();
 }
   // const game status,galleta,ranas,huevos,value del dado,nombre de la usuaria del juego.
@@ -50,7 +53,7 @@ const handleClick=()=>{
 }
 
 const restartGame =()=>{
-  setCookies(3);
+  setCookies([3]);
   setFrogs(3);
   setEggs(3);
   setPosicion(0);
@@ -69,11 +72,7 @@ const restartGame =()=>{
         <GameStatus status={gameStatus}/>
       </section>
 
-      <section className="goods-container">
-        <div className="goods-item">🍪</div>
-        <div className="goods-item">🍪</div>
-        <div className="goods-item">🍪</div>
-      </section>
+      <Goods cookies={cookies}/>
       <section className="goods-container">
         <div className="goods-item">🥚</div>
         <div className="goods-item">🥚</div>

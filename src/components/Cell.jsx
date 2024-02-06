@@ -1,17 +1,9 @@
 import Grogu from "./Grogu"
 
 
-function Cell({posicion,key}) {
-
-if(posicion===key) {
-
-    <Grogu />
-}
-
-
-
+function Cell({posicion, index}) {
   return (
-    <div className="cell" id={key}>{}</div>
+    <div className="cell" id={index}> {posicion===index ? <Grogu/> : null}</div>
   )
 }
 
