@@ -11,37 +11,55 @@ function App() {
 const [posicion, setPosicion] = useState(0);
 const [gameStatus, setGameStatus] = useState('');
 const [cookies, setCookies] = useState (['🍪', '🍪', '🍪']);
-const [frogs, setFrogs] = useState (3);
-const [eggs, setEggs] = useState (3);
+const [frogs, setFrogs] = useState (["🐸","🐸","🐸"]);
+const [eggs, setEggs] = useState (["🥚","🥚","🥚"]);
 const [dice, setDice] = useState ('');
 
 
-const rollDice=()=>{
-  const dado = Math.floor(Math.random()*4)+1;
+
+
+const rollDice = () => {
+  const dado = Math.floor(Math.random() * 4) + 1;
   setDice(dado);
   console.log(dado);
-  if(dice === 4){
-  setPosicion((prevPosition)=>prevPosition+1);
+  if (dado === 4) {
+    setPosicion(prevPosition => prevPosition + 1);
+  } else if (cookies.length > 0) {
+    setCookies(cookies.slice(1));
+  } else if (frogs.length > 0) { // Verifica si quedan ranas
+    setFrogs(frogs.slice(1));
+  } else {
+    setEggs(eggs.slice(1));
   }
-  else if(cookies){
-   setCookies(cookies.slice(1));
-  }
-
-  // }else if (!cookies && frogs) {
-  //   setFrogs(frogs.slice(1));
-  // } else if (eggs) {
-  //  setEggs(eggs.slice(1));
-  // } 
   status();
 }
+
+// const rollDice=()=>{
+//   const dado = Math.floor(Math.random()*4)+1;
+//   setDice(dado);
+//   console.log(dado);
+//   if(dado === 4){
+//   setPosicion((prevPosition)=>prevPosition+1);
+//   }
+//   else if(cookies){
+//    setCookies(cookies.slice(1));
+//   }
+
+//   else if (cookies.length === 0 && frogs.length >0) {
+//     setFrogs(frogs.slice(1));
+//   } else   {
+//    setEggs(eggs.slice(1));
+//   } 
+//   status();
+//  }
   // const game status,galleta,ranas,huevos,value del dado,nombre de la usuaria del juego.
 
 
 
 const status =()=>{
-  if(cookies === 0 && frogs === 0 && eggs === 0){
+  if(cookies.length ===0 && frogs.length ===0  && eggs.length ===0 ){
     setGameStatus('Has ganado');
-  } else if (cookies !== 0 || frogs !== 0 || eggs !== 0){
+  } else if (cookies.length >0 || frogs.length >0  || eggs.length >0 ){
     setGameStatus('En juego');
   } else {
     setGameStatus('Has perdido');
@@ -53,9 +71,9 @@ const handleClick=()=>{
 }
 
 const restartGame =()=>{
-  setCookies([3]);
-  setFrogs(3);
-  setEggs(3);
+  setCookies(['🍪', '🍪', '🍪']);
+  setFrogs(["🐸","🐸","🐸"]);
+  setEggs(["🥚","🥚","🥚"]);
   setPosicion(0);
   setGameStatus('');
 }
@@ -72,17 +90,8 @@ const restartGame =()=>{
         <GameStatus status={gameStatus}/>
       </section>
 
-      <Goods cookies={cookies}/>
-      <section className="goods-container">
-        <div className="goods-item">🥚</div>
-        <div className="goods-item">🥚</div>
-        <div className="goods-item">🥚</div>
-      </section>
-      <section className="goods-container">
-        <div className="goods-item">🐸</div>
-        <div className="goods-item">🐸</div>
-        <div className="goods-item">🐸</div>
-      </section>
+      <Goods cookies={cookies} eggs ={eggs} frogs={frogs}/>
+     
       <section>
       <RestartButton restartGame={restartGame}/>
       </section>
